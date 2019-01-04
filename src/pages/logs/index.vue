@@ -1,43 +1,32 @@
 <template>
-  <div>
-    <ul class="container log-list">
-      <li v-for="(log, index) in logs" :class="{ red: aa }" :key="index" class="log-item">
-        <card :text="(index + 1) + ' . ' + log"></card>
-      </li>
-    </ul>
+  <div class="followRecords">
+    <i-button @click="handleClick">默认按钮</i-button>
+    <i-button @click="handleClick" type="error" long="true">联通两边按钮</i-button>
+    <i-button @click="handleClick" type="primary">Primary</i-button>
+    <i-button @click="handleClick" type="ghost">Ghost</i-button>
+    <i-button @click="handleClick" type="info">Info</i-button>
+    <i-button @click="handleClick" type="success">Success</i-button>
+    <i-button @click="handleClick" type="warning">Warning</i-button>
+    <i-button @click="handleClick" type="error">Error</i-button>
   </div>
 </template>
-
 <script>
-import { formatTime } from '@/utils/index'
-import card from '@/components/card'
-
-export default {
-  components: {
-    card
-  },
-
-  data () {
-    return {
-      logs: []
+  export default {
+    name: 'followRecords',
+    data () {
+      return {
+      }
+    },
+    mounted () {
+    },
+    methods: {
+      handleClick(e) {
+        console.log(e);
+      }
     }
-  },
-
-  created () {
-    const logs = (wx.getStorageSync('logs') || [])
-    this.logs = logs.map(log => formatTime(new Date(log)))
   }
-}
 </script>
-
-<style>
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
-
-.log-item {
-  margin: 10rpx;
-}
+<style lang="scss">
+  .followRecords {
+  }
 </style>

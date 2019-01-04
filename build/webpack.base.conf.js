@@ -23,8 +23,12 @@ function getEntry (rootSrc) {
   })
    return map;
 }
-
+/*
+* 项目的源代码通过 webpack 配置的 entry 来识别页面入口
+*/
+// app 字段被识别为 app 类型
 const appEntry = { app: resolve('./src/main.js') }
+// 其余字段被识别为 page 类型
 const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
@@ -33,6 +37,7 @@ let baseWebpackConfig = {
   // 可以将 entry 写成 {'toPath': 'fromPath'} 的形式，
   // toPath 为相对于 dist 的路径, 例：index/demo，则生成的文件地址为 dist/index/demo.js
   entry,
+  // mpvue-webpack-target 专为微信小程序做的 webpack 的 构建目标(Targets)。
   target: require('mpvue-webpack-target'),
   output: {
     path: config.build.assetsRoot,
